@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -10,6 +11,7 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
     private Texture2D _pointPixel;
     private Walker _walker;
+    private bool _backgroundDrawn = false;
 
     private (int Width, int Height) WindowSize = (640, 240);
 
@@ -46,16 +48,21 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
-
+        _walker.Update();
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        if (!_backgroundDrawn)
+        {
+           GraphicsDevice.Clear(Color.CornflowerBlue);
+            _backgroundDrawn = true;
+        }
+            
 
         _spriteBatch.Begin();
-        _walker.Show(_spriteBatch, _pointPixel);
+        _walker.Draw(_spriteBatch, _pointPixel);
         _spriteBatch.End();
         // TODO: Add your drawing code here
 

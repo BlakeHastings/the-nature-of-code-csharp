@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,16 +11,27 @@ public class Walker
 {
     private int X;
     private int Y;
+    private readonly Random _random;
 
     public Walker(int width, int height)
     {
         X = width / 2;
         Y = height / 2;
+        this._random = new Random();
     }
 
-    public void Show(SpriteBatch spriteBatch, Texture2D pointTexture)
+    public void Update()
     {
-        spriteBatch.Draw(pointTexture, new Rectangle(X,Y, 5, 5), Color.Black);
+        var xStep = _random.Next(-1, 2);
+        var yStep = _random.Next(-1, 2);
+
+        this.X += xStep;
+        this.Y += yStep;
+    }
+
+    public void Draw(SpriteBatch spriteBatch, Texture2D pointTexture)
+    {
+        spriteBatch.Draw(pointTexture, new Rectangle(X, Y, 5, 5), Color.Black);
     }
 
 }
