@@ -10,4 +10,7 @@ This is a repository for storing examples from Daniel Shiffman's book The Nature
 3.) add mono game packages:
 `dotnet add package Monogame.Framework.DesktopGL`
 `dotnet add package MonoGame.Content.Builder.Task`
-4.) 
+4.) create a folder for the example
+`mkdir <example-name>`
+5.) create monogame project in folder
+`dotnet new mgwindowsdx`
